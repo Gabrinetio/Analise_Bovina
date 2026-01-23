@@ -1,98 +1,100 @@
-# 🐮 AgroTech: Predição de Peso Bovino com Deep Learning
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)
-![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
+# 🧬 AgroQuant: Advanced Predictive Modeling for Agribusiness
 
-## 📄 Sobre o Projeto
+![Python](https://img.shields.io/badge/Stack-Python_3.10-blue?style=for-the-badge&logo=python)
+![TensorFlow](https://img.shields.io/badge/Deep_Learning-TensorFlow%2FKeras-orange?style=for-the-badge&logo=tensorflow)
+![Pandas](https://img.shields.io/badge/Data_Eng-Pandas%20%7C%20Numpy-150458?style=for-the-badge&logo=pandas)
+![Status](https://img.shields.io/badge/Pipeline-Production_Ready-brightgreen?style=for-the-badge)
 
-No agronegócio, o peso do animal é a métrica mais importante para definir o ponto de abate e o valor de venda. No entanto, pesar gado exige infraestrutura pesada (balanças de curral), estressa o animal (perda de peso) e exige mão de obra.
+## 🏛️ Architecture Overview
+Este repositório contém uma **Suíte de Soluções de Machine Learning** desenvolvida para resolver problemas de alta complexidade na cadeia produtiva da pecuária. O projeto foca na **integração de dados heterogêneos** (biométricos e financeiros) para otimização de manejo e hedge financeiro.
 
-Este projeto propõe uma **solução de "Balança Digital"**: uma Rede Neural Profunda (Deep Learning) capaz de estimar o peso do animal com alta precisão utilizando apenas duas medidas corporais simples: **Perímetro Torácico** e **Comprimento Corporal**.
+### 🔄 ML Pipeline
+O projeto segue uma arquitetura modular de processamento de dados:
 
-O modelo simula a aplicação em um aplicativo mobile, onde o produtor insere as medidas e obtém o peso instantaneamente.
-
-## 🚀 Destaques Técnicos
-
-* **Dados Sintéticos Realistas:** Geração de um dataset com 5.000 animais baseado na *Fórmula de Schaeffer* e adição de ruído estocástico para simular erros reais de campo.
-* **Feature Engineering:** Otimização do modelo através da criação de variáveis físicas (Volume Estimado e Área Corporal) para acelerar a convergência da Rede Neural.
-* **Deep Learning Otimizado:** Uso de arquitetura MLP (Multi-Layer Perceptron) com *BatchNormalization*, *Dropout* e *Learning Rate Decay*.
-* **MLOps & Deploy:** Pipeline completo de salvamento do modelo (`.keras`) e dos escaladores (`.pkl`) para simulação de produção.
-
-## 🛠 Tecnologias Utilizadas
-
-* **Linguagem:** Python
-* **Machine Learning:** TensorFlow, Keras, Scikit-Learn
-* **Manipulação de Dados:** Pandas, NumPy
-* **Visualização:** Matplotlib, Seaborn
-* **Persistência:** Joblib
-
-## 📊 Performance e Resultados
-
-O modelo atingiu um nível de precisão comparável às variações naturais de uma balança física.
-
-| Métrica | Resultado | Descrição |
-| :--- | :--- | :--- |
-| **Assertividade** | **~96.4%** | Taxa de acerto média (100 - MAPE) |
-| **Erro Médio (MAE)** | **~16.6 kg** | Margem de erro absoluta para mais ou menos |
-| **R² Score** | **0.94** | O modelo explica 94% da variação de peso |
-
-### Interpretação dos Gráficos gerados no Notebook
-
-#### 📉 1. Curva de Aprendizado (Loss)
-Mostra o erro diminuindo conforme o tempo passa. As linhas de **Treino** e **Validação** descem juntas, indicando que o modelo aprendeu as regras gerais e não apenas decorou os dados (*sem Overfitting*).
-
-#### 🎯 2. Real vs. Previsto
-Compara o peso real (Eixo X) com a previsão da IA (Eixo Y). Os pontos formam uma linha diagonal estreita sobre a linha vermelha de perfeição, provando a alta consistência do modelo.
-
-#### 🔔 3. Distribuição dos Erros
-A maioria dos erros está concentrada no **Zero** (formato de sino/Gaussiana). Isso confirma que o modelo não é viciado (*unbiased*), ou seja, ele não tem tendência de "chutar" sempre para cima ou para baixo.
-
-#### 📐 4. A Física (Volume vs Peso)
-Demonstra que a Rede Neural aprendeu a correlação física correta: quanto maior o volume corporal estimado, maior o peso, seguindo uma curva exponencial suave.
-
-## 📂 Estrutura do Projeto
-
-```text
-AgroTech-Weight-Prediction/
-│
-├── notebook_boi_digital.ipynb   # Código completo (Geração, Treino e Análise)
-├── dataset_boi_completo.csv     # Dataset gerado (5.000 registros)
-├── modelo/                      # Arquivos para Deploy
-│   ├── modelo_boi_senior.keras  # O modelo treinado
-│   ├── scaler_input.pkl         # Normalizador de entrada
-│   └── scaler_output.pkl        # Normalizador de saída
-│
-└── README.md                    # Documentação
-
+```mermaid
+graph LR
+A[Raw Data Sources] -->|ETL Process| B(Data Cleaning & Normalization)
+B --> C{Feature Engineering}
+C -->|Computer Vision| D[Weight Estimation Model]
+C -->|Time Series| E[Market Prediction Model]
+D --> F[Deploy / Inference]
+E --> F
 
 ```
-## 💻 Como Executar
-
-1. Clone este repositório:
-
-```bash
-git clone [https://github.com/SEU-USUARIO/AgroTech-Weight-Prediction.git](https://github.com/SEU-USUARIO/AgroTech-Weight-Prediction.git)
-
-```
-
-2. Instale as dependências:
-
-```bash
-pip install pandas numpy tensorflow scikit-learn seaborn matplotlib joblib
-
-```
-
-3. Execute o notebook `notebook_boi_digital.ipynb` no Jupyter ou Google Colab.
-
-## 🔮 Próximos Passos
-
-* Desenvolver uma interface Web simples com **Streamlit**.
-* Implementar visão computacional para medir o boi automaticamente através de fotos, eliminando a fita métrica.
 
 ---
 
-**Autor:** Gabriel Santana
+## 🔬 Project 1: Biometric Deep Learning (Weight Estimation)
+
+> *Substituindo métodos analógicos por Redes Neurais Densas.*
+
+Este módulo utiliza **Deep Learning** para inferir a biomassa animal baseada em features morfológicas, eliminando a necessidade de pesagem física estressante.
+
+### ⚙️ Technical Specs
+
+* **Algoritmo:** Feed-Forward Neural Network (Dense MLP).
+* **Topologia:**
+* Input Layer: 4 Neurônios (Features Biométricas + Interações Não-Lineares).
+* Hidden Layers: 2 Camadas Densas (64/32 units) com ativação `ReLU`.
+* Output Layer: Regressão Linear.
 
 
+* **Otimização:** Adam Optimizer com Loss `MSE` (Mean Squared Error).
+* **Performance:** Acurácia superior a fórmulas alométricas tradicionais (ex: Quetelet), com **MAE de +/- 16kg** em validação cruzada.
+
+---
+
+## 🔬 Project 2: Quantitative Finance (Market Forecasting)
+
+> *Modelagem de Séries Temporais Financeiras (Live Cattle Futures - LE=F).*
+
+Este módulo implementa um pipeline completo de **Data Science Financeiro** para prever tendências de curto prazo na B3/Chicago.
+
+### 🛠️ Feature Engineering & Data Enrichment
+
+O modelo não consome apenas preços brutos. Foi desenvolvido um processo de **Enriquecimento de Dados** complexo:
+
+1. **Macroeconomic Indicators:** Integração via API com dados de Commodities (Milho/Corn Futures), Câmbio (BRL/USD) e Volatilidade (VIX).
+2. **NLP (Natural Language Processing):** Tentativa de análise de sentimento utilizando o *Daily News Sentiment Index* (FED San Francisco).
+3. **Technical Indicators:** Geração de Features de `Rolling Mean` (7 dias) e `Lagged Returns` para capturar momentum.
+
+### ⚔️ Model Benchmark & Selection (The "Why")
+
+Para garantir robustez, realizamos um benchmark exaustivo comparando abordagens de ponta. A decisão final foi baseada na **Navalha de Occam** e na **Teoria do Passeio Aleatório (Random Walk)**.
+
+| Modelo | Arquitetura | Resultado Técnico | Análise de Engenharia |
+| --- | --- | --- | --- |
+| **LSTM** | Recurrent Neural Network (Look-back 60d) | **Overfitting** | O modelo capturou ruído excessivo, sem ganho de generalização sobre o baseline. |
+| **Random Forest** | Ensemble Classifier (200 Trees) | **Low Accuracy** | Provou que no intraday, a direção do mercado tende a 50/50 (Estocástico). |
+| **Macro-Regression** | Multivariate Linear (Ridge) | **High Variance** | A injeção de variáveis exógenas (ex: VIX) aumentou a variância do erro. |
+| **Linear Regression** | Univariate OLS | **Best Fit** | **Escolhido.** A inércia de preço (Price Action puro) provou ser o preditor mais estável e com menor latência. |
+
+> **Conclusão Sênior:** Em sistemas de produção, modelos parcimoniosos (simples) com baixa latência e alta explicabilidade superam "Black Boxes" complexas quando o sinal-ruído dos dados é baixo.
+
+---
+
+## 📂 Repository Structure
+
+* `01_Balanca_Digital/`: Notebooks de treinamento da Rede Neural, datasets normalizados e serialização do modelo (`.keras`).
+* `02_Oraculo_Mercado/`: Pipeline de extração de dados financeiros (`yfinance`), testes de hipótese (LSTM vs Linear) e modelo final (`.pkl`).
+
+## 💻 How to Reproduce
+
+Este projeto utiliza `joblib` para persistência de objetos e `scikit-learn`/`tensorflow` para inferência.
+
+```bash
+# Clone e Instalação
+git clone [https://github.com/Gabrinetio/analise_bovina.git](https://github.com/Gabrinetio/analise_bovina.git)
+pip install -r requirements.txt
+
+# Execução do Pipeline de Mercado
+cd 02_Oraculo_Mercado
+jupyter notebook O_Oráculo_do_Agro.ipynb
+
+```
+
+---
+
+**Author:** Gabriel Santana - *Data Scientist & Solutions Architect*
 
